@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.swm.dao.goods.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.swm.model.goods.Goods" >
+    <result column="spcode" property="spcode" jdbcType="VARCHAR" />
+    <result column="spname" property="spname" jdbcType="VARCHAR" />
+    <result column="spver" property="spver" jdbcType="VARCHAR" />
+    <result column="spnumber" property="spnumber" jdbcType="INTEGER" />
+    <result column="spprice" property="spprice" jdbcType="DECIMAL" />
+    <result column="spprcezj" property="spprcezj" jdbcType="VARCHAR" />
+    <result column="sppricels" property="sppricels" jdbcType="VARCHAR" />
+    <result column="sppricelszj" property="sppricelszj" jdbcType="VARCHAR" />
+    <result column="spcategory" property="spcategory" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="crateperson" property="crateperson" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.swm.model.goods.Goods" >
+    insert into goods (spcode, spname, spver, 
+      spnumber, spprice, spprcezj, 
+      sppricels, sppricelszj, spcategory, 
+      createtime, crateperson)
+    values (#{spcode,jdbcType=VARCHAR}, #{spname,jdbcType=VARCHAR}, #{spver,jdbcType=VARCHAR}, 
+      #{spnumber,jdbcType=INTEGER}, #{spprice,jdbcType=DECIMAL}, #{spprcezj,jdbcType=VARCHAR}, 
+      #{sppricels,jdbcType=VARCHAR}, #{sppricelszj,jdbcType=VARCHAR}, #{spcategory,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{crateperson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.swm.model.goods.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spcode != null" >
+        spcode,
+      </if>
+      <if test="spname != null" >
+        spname,
+      </if>
+      <if test="spver != null" >
+        spver,
+      </if>
+      <if test="spnumber != null" >
+        spnumber,
+      </if>
+      <if test="spprice != null" >
+        spprice,
+      </if>
+      <if test="spprcezj != null" >
+        spprcezj,
+      </if>
+      <if test="sppricels != null" >
+        sppricels,
+      </if>
+      <if test="sppricelszj != null" >
+        sppricelszj,
+      </if>
+      <if test="spcategory != null" >
+        spcategory,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="crateperson != null" >
+        crateperson,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spcode != null" >
+        #{spcode,jdbcType=VARCHAR},
+      </if>
+      <if test="spname != null" >
+        #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="spver != null" >
+        #{spver,jdbcType=VARCHAR},
+      </if>
+      <if test="spnumber != null" >
+        #{spnumber,jdbcType=INTEGER},
+      </if>
+      <if test="spprice != null" >
+        #{spprice,jdbcType=DECIMAL},
+      </if>
+      <if test="spprcezj != null" >
+        #{spprcezj,jdbcType=VARCHAR},
+      </if>
+      <if test="sppricels != null" >
+        #{sppricels,jdbcType=VARCHAR},
+      </if>
+      <if test="sppricelszj != null" >
+        #{sppricelszj,jdbcType=VARCHAR},
+      </if>
+      <if test="spcategory != null" >
+        #{spcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crateperson != null" >
+        #{crateperson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <select id="getGoodsList" resultMap="BaseResultMap" parameterType="com.cn.swm.model.goods.Goods" >
+       select
+		*		
+		from goods
+		<where>
+			<if test="spname != null  and spname != ''" >
+				and spname = #{spname,jdbcType=VARCHAR} 
+			</if>
+			<if test="spcategory != null  and spcategory != ''" >
+				and spcategory = #{spcategory,jdbcType=VARCHAR} 
+			</if>
+	    </where>	
+  </select>
+  <update id="updateShop" parameterType="com.cn.swm.model.goods.Goods" >
+    update goods
+    <set >
+       <if test="spnumber != null" >
+        spnumber = #{spnumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spcode = #{spcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateGoods" parameterType="com.cn.swm.model.goods.Goods" >
+    update goods
+    <set >
+      <if test="spcode != null" >
+        spcode = #{spcode,jdbcType=VARCHAR},
+      </if>
+      <if test="spname != null" >
+        spname = #{spname,jdbcType=VARCHAR},
+      </if>
+      <if test="spver != null" >
+        spver = #{spver,jdbcType=VARCHAR},
+      </if>
+       <if test="spnumber != null" >
+        spnumber = #{spnumber,jdbcType=VARCHAR},
+      </if>
+       <if test="spprice != null" >
+        spprice = #{spprice,jdbcType=VARCHAR},
+      </if>
+       <if test="spprcezj != null" >
+        spprcezj = #{spprcezj,jdbcType=VARCHAR},
+      </if>
+       <if test="sppricels != null" >
+        sppricels = #{sppricels,jdbcType=VARCHAR},
+      </if>
+      <if test="sppricelszj != null" >
+        sppricelszj = #{sppricelszj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spcode = #{spcode,jdbcType=VARCHAR}
+  </update>
+  <delete id="del" parameterType="String" >
+    delete from goods
+    where spcode = #{spcode,jdbcType=VARCHAR}
+  </delete>
+   <select id="getGood" resultMap="BaseResultMap" parameterType="com.cn.swm.model.goods.Goods">
+    select 
+    *
+    from goods
+    where spcode = #{spcode,jdbcType=VARCHAR}
+  </select>
+   <select id="goodList" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    *
+    from goods
+   <if test="a!=null">
+            <where> 
+                <if test="name!=null and name!=''"> name=#{name}</if>
+                <if test="age!=null and age!=''">AND  age=#{age}</if>
+            </where>
+            LIMIT #{a},#{b}
+        </if>
+  </select>
+</mapper>
