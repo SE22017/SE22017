@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.swm.dao.sale.InputSaleGoodMapper" >
+  <resultMap id="HanderResultMap" type="com.cn.swm.model.sale.InputSaleGood" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="customer" property="customer" jdbcType="VARCHAR" />
+    <result column="saleman" property="saleman" jdbcType="VARCHAR" />
+    <result column="addby" property="addby" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="dist" property="dist" jdbcType="DOUBLE" />
+    <result column="distmoney" property="distmoney" jdbcType="DOUBLE" />
+    <result column="distamount" property="distamount" jdbcType="DOUBLE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="ioflag" property="ioflag" jdbcType="VARCHAR" />
+    <result column="shop" property="shop" jdbcType="VARCHAR" />
+     <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.swm.model.sale.InputSaleGood" >
+    insert into inputsalegood (id, code, customer, 
+      saleman, addby, amount, 
+      dist, distmoney, distamount, 
+      note, flag, ioflag,shop,status)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{customer,jdbcType=VARCHAR}, 
+      #{saleman,jdbcType=VARCHAR}, #{addby,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{dist,jdbcType=DOUBLE}, #{distmoney,jdbcType=DOUBLE}, #{distamount,jdbcType=DOUBLE}, 
+      #{note,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{ioflag,jdbcType=VARCHAR},
+      #{shop,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR})
+  </insert>
+  <select id="getInputGoodList" resultMap="HanderResultMap" parameterType="com.cn.swm.model.sale.InputSaleGood" >
+       select *	from inputsalegood
+		<where>
+			<if test="code != null  and code != ''" >
+				and code = #{code,jdbcType=VARCHAR} 
+			</if>
+			<if test="customer != null  and supply != ''" >
+				and customer = #{customer,jdbcType=VARCHAR} 
+			</if>
+			<if test="ioflag != null  and ioflag != ''" >
+				and ioflag = #{ioflag,jdbcType=VARCHAR} 
+			</if>
+	    </where>	
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.cn.swm.model.sale.InputSaleGood"  >
+    update inputsalegood
+    set status = #{status,jdbcType=VARCHAR}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertSelective" parameterType="com.cn.swm.model.sale.InputSaleGood" >
+    insert into inputsalegood
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="saleman != null" >
+        saleman,
+      </if>
+      <if test="addby != null" >
+        addby,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="dist != null" >
+        dist,
+      </if>
+      <if test="distmoney != null" >
+        distmoney,
+      </if>
+      <if test="distamount != null" >
+        distamount,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="ioflag != null" >
+        ioflag,
+      </if>
+      <if test="shop != null" >
+        shop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="saleman != null" >
+        #{saleman,jdbcType=VARCHAR},
+      </if>
+      <if test="addby != null" >
+        #{addby,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="dist != null" >
+        #{dist,jdbcType=DOUBLE},
+      </if>
+      <if test="distmoney != null" >
+        #{distmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="distamount != null" >
+        #{distamount,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="ioflag != null" >
+        #{ioflag,jdbcType=VARCHAR},
+      </if>
+      <if test="shop != null" >
+        #{shop,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
